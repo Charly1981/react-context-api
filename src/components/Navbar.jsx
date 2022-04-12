@@ -1,19 +1,27 @@
 import React from "react";
+import { ThemeContext } from "../context/ThemeProvider";
 
 const Navbar = () => {
-  const [color, setColor] = React.useState("");
-  const [colorTexto, setColorTexto] = React.useState("#000");
+  const { theme, setTheme } = React.useContext(ThemeContext);
 
   return (
     <div
       style={{
-        background: color,
-        color: colorTexto,
+        background: theme.background,
+        color: theme.color,
       }}
     >
       <h1>Navbar</h1>
-      <input type="color" onChange={(e) => setColor(e.target.value)} />
-      <input type="color" onChange={(e) => setColorTexto(e.target.value)} />
+      <label>Color Texto</label>
+      <input
+        type="color"
+        onChange={(e) => setTheme({ ...theme, color: e.target.value })}
+      />
+      <label>Color Fondo</label>
+      <input
+        type="color"
+        onChange={(e) => setTheme({ ...theme, background: e.target.value })}
+      />
     </div>
   );
 };
