@@ -9,8 +9,20 @@ const ThemeProvider = (props) => {
   };
   const [theme, setTheme] = React.useState(themes);
 
+  React.useEffect(() => {
+    if (localStorage.getItem("themeLocal")) {
+      const themeLocal = JSON.parse(localStorage.getItem("themeLocal"));
+      setTheme(themeLocal);
+    }
+  }, []);
+
+  const cambioColor = (valor) => {
+    setTheme(valor);
+    localStorage.setItem("themeLocal", JSON.stringify(valor));
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, cambioColor }}>
       {props.children}
     </ThemeContext.Provider>
   );
