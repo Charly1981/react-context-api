@@ -1,8 +1,10 @@
 import React from "react";
 import { ThemeContext } from "../context/ThemeProvider";
+import { HolaContext } from "../context/HolaProvider";
 
 const Principal = () => {
   const { theme } = React.useContext(ThemeContext);
+  const { hola } = React.useContext(HolaContext);
 
   return (
     <div
@@ -12,6 +14,7 @@ const Principal = () => {
       }}
     >
       <h1>Contenido del Sitio Web</h1>
+      <p>{hola}</p>
     </div>
   );
 };
